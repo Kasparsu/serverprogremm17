@@ -18,7 +18,6 @@ class Router {
         $this->uri = substr($uri,strlen($baseUri));
         $this->baseUri = $baseUri;
         $this->routes = include(__DIR__ . "/../routes.php");
-        $this->match();
     }
     public function match(){
         foreach($this->routes as $route => $method){

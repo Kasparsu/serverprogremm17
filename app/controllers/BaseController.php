@@ -11,4 +11,7 @@ class BaseController {
     public function home(){
         view('index');
     }
+    public function test(){
+
+    }
 }

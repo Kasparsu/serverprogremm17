@@ -1,5 +1,7 @@
 <?php
 
+use App\Cat;
+use App\DI;
 use App\Router;
 require('../app/helpers.php');
 spl_autoload_register(function($class) {
@@ -10,4 +12,5 @@ spl_autoload_register(function($class) {
     }
     require_once(__DIR__ . '/../' . implode('/', $class) . '.php');
 });
-$router = new Router($_SERVER["REQUEST_METHOD"], $_SERVER["REQUEST_URI"], "/");
+DI::$router = new Router($_SERVER["REQUEST_METHOD"], $_SERVER["REQUEST_URI"], "/");
+DI::$router->match();

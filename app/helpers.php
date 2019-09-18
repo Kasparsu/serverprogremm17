@@ -1,5 +1,6 @@
 <?php
 
 function view($view){
-    include(__DIR__ . "/../views/$view.php");
+    $view = __DIR__ . "/../views/$view.php";
+    include(__DIR__ . "/../views/template.php");
 }
