@@ -11,4 +11,8 @@ class DI
      */
     public static $router;
 
+    /**
+     * @var DB
+     */
+    public static $DB;
 }
