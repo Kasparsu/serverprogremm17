@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use App\DI;
+use App\Models\Employee;
 use PDO;
 use PDOException;
 use PDOStatement;
@@ -14,13 +15,8 @@ class BaseController {
         view('page2');
     }
     public function home(){
-        /** @var PDOStatement $stmt */
-        $stmt = DI::$DB->getConn()->prepare("SELECT id, fname, lname, bday, phone FROM employee");
-        $stmt->execute();
-
-        // set the resulting array to associative
-        $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-
+        $result = Employee::selectAll();
+        var_dump($result);
         view('index');
     }
 }
