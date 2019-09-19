@@ -29,4 +29,13 @@ class Router {
             }
         }
     }
+
+    /**
+     * @return bool|string
+     */
+    public function getUri()
+    {
+        return $this->uri;
+    }
+
 }
