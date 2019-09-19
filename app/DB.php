@@ -13,7 +13,7 @@ class DB
     private $username;
     private $password;
     private $dbname;
-
+    private $conn;
     /**
      * DB constructor.
      * @param string $servername
@@ -31,14 +31,22 @@ class DB
 
     public function connect(){
         try {
-            $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+            $this->conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
             // set the PDO error mode to exception
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "Connected successfully";
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
         catch(PDOException $e)
         {
             echo "Connection failed: " . $e->getMessage();
         }
     }
+
+    /**
+     * @return mixed
+     */
+    public function getConn()
+    {
+        return $this->conn;
+    }
+
 }
