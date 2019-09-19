@@ -1,6 +1,9 @@
 <?php
 namespace App\Controllers;
 
+use PDO;
+use PDOException;
+
 class BaseController {
     public function page1(){
         view('page1');
@@ -9,9 +12,8 @@ class BaseController {
         view('page2');
     }
     public function home(){
-        view('index');
-    }
-    public function test(){
 
+
+        view('index');
     }
 }

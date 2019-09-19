@@ -10,4 +10,5 @@ class DI
      * @var Router
      */
     public static $router;
+
 }
