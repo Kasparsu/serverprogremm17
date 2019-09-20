@@ -33,4 +33,14 @@ class Employee
         // use exec() because no results are returned
         DI::$DB->getConn()->exec($sql);
     }
+    public static function find($id){
+        /** @var PDOStatement $stmt */
+        $stmt = DI::$DB->getConn()->prepare("SELECT id, fname, lname, bday, phone FROM " . self::$tableName . " WHERE id=$id");
+        $stmt->execute();
+
+        // set the resulting array to associative
+        $result = $stmt->setFetchMode(PDO::FETCH_CLASS, self::class);
+        $result = $stmt->fetch();
+        return $result;
+    }
 }

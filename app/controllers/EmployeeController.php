@@ -56,7 +56,8 @@ class EmployeeController
      *  shows view for single resource
      */
     public function view(){
-
+        $employee = Employee::find(1);
+        var_dump($employee);
     }
 
     /**

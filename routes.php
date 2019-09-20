@@ -10,4 +10,5 @@ return [
     "employees" => ["index", EmployeeController::class],
     "employees/create" => ["create", EmployeeController::class],
     "employees/store" => ["store", EmployeeController::class],
+    "employees/view" => ["view", EmployeeController::class],
 ];
