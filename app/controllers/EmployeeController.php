@@ -13,7 +13,7 @@ class EmployeeController
      */
     public function index() {
         $result = Employee::selectAll();
-        view('employees/index');
+        view('employees/index', compact('result'));
     }
 
     /**

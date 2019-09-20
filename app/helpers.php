@@ -1,6 +1,7 @@
 <?php
 
-function view($view){
+function view($view, $variables = []){
+    extract($variables);
     $view = __DIR__ . "/../views/$view.php";
     include(__DIR__ . "/../views/template.php");
 }
