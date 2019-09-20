@@ -8,4 +8,6 @@ return [
     "page2" => ["page2", BaseController::class],
     "" => ["home", BaseController::class],
     "employees" => ["index", EmployeeController::class],
+    "employees/create" => ["create", EmployeeController::class],
+    "employees/store" => ["store", EmployeeController::class],
 ];

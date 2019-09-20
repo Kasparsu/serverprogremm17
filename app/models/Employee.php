@@ -27,4 +27,10 @@ class Employee
         $result = $stmt->fetchAll();
         return $result;
     }
+    public function save(){
+        $sql = "INSERT INTO " . self::$tableName . " (fname, lname, bday, phone)
+    VALUES ('$this->fname', '$this->lname', '$this->bday', '$this->phone')";
+        // use exec() because no results are returned
+        DI::$DB->getConn()->exec($sql);
+    }
 }
