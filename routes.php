@@ -11,4 +11,7 @@ return [
     "employees/create" => ["create", EmployeeController::class],
     "employees/store" => ["store", EmployeeController::class],
     "employees/view" => ["view", EmployeeController::class],
+    "employees/edit" => ["edit", EmployeeController::class],
+    "employees/update" => ["update", EmployeeController::class],
+    "employees/delete" => ["delete", EmployeeController::class],
 ];

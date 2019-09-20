@@ -28,11 +28,20 @@ class Employee
         return $result;
     }
     public function save(){
+        if(!$this->id){
         $sql = "INSERT INTO " . self::$tableName . " (fname, lname, bday, phone)
     VALUES ('$this->fname', '$this->lname', '$this->bday', '$this->phone')";
+        } else {
+            $sql = "UPDATE " . self::$tableName . " SET fname='$this->fname', lname='$this->lname', bday='$this->bday', phone='$this->phone' WHERE id=$this->id";
+        }
         // use exec() because no results are returned
         DI::$DB->getConn()->exec($sql);
     }
+
+    /**
+     * @param $id
+     * @return bool|Employee
+     */
     public static function find($id){
         /** @var PDOStatement $stmt */
         $stmt = DI::$DB->getConn()->prepare("SELECT id, fname, lname, bday, phone FROM " . self::$tableName . " WHERE id=$id");
@@ -42,5 +51,10 @@ class Employee
         $result = $stmt->setFetchMode(PDO::FETCH_CLASS, self::class);
         $result = $stmt->fetch();
         return $result;
+    }
+
+    public function delete(){
+        $sql = "DELETE FROM " . self::$tableName . " WHERE id=$this->id";
+        DI::$DB->getConn()->exec($sql);
     }
 }

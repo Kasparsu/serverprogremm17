@@ -18,7 +18,7 @@
         <td><?= $employee->bday ?></td>
         <td><?= $employee->phone ?></td>
         <td>
-            <a href="employees/show?id=<?= $employee->id ?>">show</a>
+            <a href="employees/view?id=<?= $employee->id ?>">show</a>
             <a href="employees/edit?id=<?= $employee->id ?>">edit</a>
             <a href="employees/delete?id=<?= $employee->id ?>">delete</a>
         </td>

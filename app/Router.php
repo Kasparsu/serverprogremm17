@@ -15,7 +15,7 @@ class Router {
     public function __construct($method, $uri, $baseUri)
     {
         $this->method = $method;
-        $this->uri = substr($uri,strlen($baseUri));
+        $this->uri = explode('?', substr($uri,strlen($baseUri)))[0];
         $this->baseUri = $baseUri;
         $this->routes = include(__DIR__ . "/../routes.php");
     }

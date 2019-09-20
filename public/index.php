@@ -17,4 +17,3 @@ DI::$DB = new DB('database', 'root', 'secret', 'homestead');
 DI::$DB->connect();
 DI::$router = new Router($_SERVER["REQUEST_METHOD"], $_SERVER["REQUEST_URI"], "/");
 DI::$router->match();
-
