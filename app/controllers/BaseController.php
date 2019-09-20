@@ -15,8 +15,6 @@ class BaseController {
         view('page2');
     }
     public function home(){
-        $result = Employee::selectAll();
-        var_dump($result);
         view('index');
     }
 }
