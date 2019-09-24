@@ -11,8 +11,10 @@ use PDOStatement;
 class BaseController {
     public function page1(){
         $product = new Product();
-        $fields = $product->getFields();
-        var_dump($fields);
+        $product->name = "kassu";
+        $product->price = 1.22;
+        $sql = $product->getCreateSql();
+        var_dump($sql);
     }
     public function page2(){
         view('page2');

@@ -14,7 +14,6 @@ class Model
     public static function selectAll(){
         /** @var PDOStatement $stmt */
         $stmt = DI::$DB->getConn()->prepare("SELECT * FROM " . static::$tableName);
-        var_dump("SELECT * FROM " . static::$tableName);
         $stmt->execute();
 
         // set the resulting array to associative
@@ -24,8 +23,7 @@ class Model
     }
     public function save(){
         if(!$this->id){
-            $sql = "INSERT INTO " . static::$tableName . " (fname, lname, bday, phone)
-    VALUES ('$this->fname', '$this->lname', '$this->bday', '$this->phone')";
+            $sql = $this->getCreateSql();
         } else {
             $sql = "UPDATE " . self::$tableName . " SET fname='$this->fname', lname='$this->lname', bday='$this->bday', phone='$this->phone' WHERE id=$this->id";
         }
@@ -39,7 +37,7 @@ class Model
      */
     public static function find($id){
         /** @var PDOStatement $stmt */
-        $stmt = DI::$DB->getConn()->prepare("SELECT id, fname, lname, bday, phone FROM " . static::$tableName . " WHERE id=$id");
+        $stmt = DI::$DB->getConn()->prepare("SELECT * FROM " . static::$tableName . " WHERE id=$id");
         $stmt->execute();
 
         // set the resulting array to associative
@@ -51,5 +49,29 @@ class Model
     public function delete(){
         $sql = "DELETE FROM " . static::$tableName . " WHERE id=$this->id";
         DI::$DB->getConn()->exec($sql);
+    }
+
+    public function getFields(){
+        $properties = get_class_vars(static::class);
+        unset($properties['id']);
+        unset($properties['tableName']);
+        return $properties;
+    }
+    public function getCreateSql(){
+        $fields = $this->getFields();
+        $fieldNames = array_keys($fields);
+        $fieldNamesString = implode(', ', $fieldNames);
+        $fieldsValuesString = '';
+        foreach ($fieldNames as $name){
+            $fieldsValuesString .= $this->$name . "', '";
+        }
+        $fieldsValuesString = substr($fieldsValuesString, 0, strlen($fieldsValuesString)-4 );
+        $sql = "INSERT INTO " . static::$tableName . " (". $fieldNamesString .")
+    VALUES ('" . $fieldsValuesString . "')";
+        return $sql;
+    }
+    public function getUpdateSql(){
+        $sql = "UPDATE " . self::$tableName . " SET fname='$this->fname', lname='$this->lname', bday='$this->bday', phone='$this->phone' WHERE id=$this->id";
+
     }
 }

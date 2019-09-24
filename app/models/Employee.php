@@ -17,5 +17,4 @@ class Employee extends Model
     public $bday;
     public $phone;
 
-
 }
