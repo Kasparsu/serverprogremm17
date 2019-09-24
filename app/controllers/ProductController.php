@@ -6,15 +6,13 @@ namespace App\Controllers;
 
 use App\Models\Employee;
 
-class EmployeeController
+class ProductController
 {
     /**
      * output resource list view with elements
      */
     public function index() {
-        var_dump(Employee::$tableName);
         $result = Employee::selectAll();
-
         view('employees/index', compact('result'));
     }
 
