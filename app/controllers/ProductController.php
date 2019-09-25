@@ -5,6 +5,7 @@ namespace App\Controllers;
 
 
 use App\Models\Employee;
+use App\Models\Product;
 
 class ProductController
 {
@@ -12,8 +13,8 @@ class ProductController
      * output resource list view with elements
      */
     public function index() {
-        $result = Employee::selectAll();
-        view('employees/index', compact('result'));
+        $result = Product::selectAll();
+        view('products/index', compact('result'));
     }
 
     /**

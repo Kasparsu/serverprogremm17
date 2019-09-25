@@ -25,7 +25,7 @@ class Model
         if(!$this->id){
             $sql = $this->getCreateSql();
         } else {
-            $sql = "UPDATE " . self::$tableName . " SET fname='$this->fname', lname='$this->lname', bday='$this->bday', phone='$this->phone' WHERE id=$this->id";
+            $sql = $this->getUpdateSql();
         }
         // use exec() because no results are returned
         DI::$DB->getConn()->exec($sql);
@@ -71,7 +71,14 @@ class Model
         return $sql;
     }
     public function getUpdateSql(){
-        $sql = "UPDATE " . self::$tableName . " SET fname='$this->fname', lname='$this->lname', bday='$this->bday', phone='$this->phone' WHERE id=$this->id";
-
+        $fields = $this->getFields();
+        $fieldNames = array_keys($fields);
+        $fieldsValuesString = '';
+        foreach ($fieldNames as $name){
+            $fieldsValuesString .= $name . "='" .$this->$name . "', ";
+        }
+        $fieldsValuesString = substr($fieldsValuesString, 0, strlen($fieldsValuesString)-2 );
+        $sql = "UPDATE " . static::$tableName . " SET $fieldsValuesString WHERE id=$this->id";
+        return $sql;
     }
 }

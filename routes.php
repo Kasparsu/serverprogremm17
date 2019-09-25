@@ -2,6 +2,7 @@
 
 use App\Controllers\BaseController;
 use App\Controllers\EmployeeController;
+use App\Controllers\ProductController;
 
 return [
     "page1" => ["page1", BaseController::class],
@@ -14,4 +15,5 @@ return [
     "employees/edit" => ["edit", EmployeeController::class],
     "employees/update" => ["update", EmployeeController::class],
     "employees/delete" => ["delete", EmployeeController::class],
+    "products" => ["index", ProductController::class],
 ];
