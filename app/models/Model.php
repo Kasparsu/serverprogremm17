@@ -41,7 +41,7 @@ class Model
         $stmt->execute();
 
         // set the resulting array to associative
-        $result = $stmt->setFetchMode(PDO::FETCH_CLASS, self::class);
+        $result = $stmt->setFetchMode(PDO::FETCH_CLASS, static::class);
         $result = $stmt->fetch();
         return $result;
     }
