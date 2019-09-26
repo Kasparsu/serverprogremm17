@@ -4,6 +4,7 @@ namespace App\Controllers;
 use App\DI;
 use App\Models\Employee;
 use App\Models\Product;
+use App\Models\User;
 use PDO;
 use PDOException;
 use PDOStatement;
@@ -16,10 +17,13 @@ class BaseController {
         view('page2');
     }
     public function home(){
-        if($_GET['color']) {
-            $_SESSION['color'] = $_GET['color'];
-        }
-        var_dump($_SESSION['color']);
         //view('index');
+    }
+    public function secret(){
+        if(User::auth()){
+            echo "Super secret message <a href='/logout'>logout</a>";
+        } else {
+            echo "Access denied you looser!";
+        }
     }
 }
