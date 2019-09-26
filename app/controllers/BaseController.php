@@ -10,17 +10,16 @@ use PDOStatement;
 
 class BaseController {
     public function page1(){
-        $product = new Product();
-        $product->id = 1;
-        $product->name = "kassu";
-        $product->price = 1.22;
-        $sql = $product->getUpdateSql();
-        var_dump($sql);
+        view('page1');
     }
     public function page2(){
         view('page2');
     }
     public function home(){
-        view('index');
+        if($_GET['color']) {
+            $_SESSION['color'] = $_GET['color'];
+        }
+        var_dump($_SESSION['color']);
+        //view('index');
     }
 }

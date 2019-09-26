@@ -5,7 +5,7 @@ use App\Controllers\BaseController;
 use App\DB;
 use App\DI;
 use App\Router;
-
+session_start();
 require __DIR__ . '/../vendor/autoload.php';
 
 require('../app/helpers.php');
